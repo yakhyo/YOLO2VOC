@@ -20,7 +20,7 @@ Let's say for `img1.jpg` you will be created `img1.txt` containing:
 ```
 ### Pascal VOC To YOLO Absolute
 
-`main.py --voc2yolo`
+`main.py --voc2yolo_a`
 - `<object-class>` - integer number of object from `0` to `(classes-1)`
 - `<x_min> <y_min> <x_max> <y_max>` - `int` absolute values object coordinates 
 - For example: `<object-class> <x_min> <y_min> <x_max> <y_max>`:
