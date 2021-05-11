@@ -1,4 +1,4 @@
-### Convert YOLO to Pascal VOC format or Pascal to YOLO format 
+## Convert YOLO to Pascal VOC format or Pascal to YOLO format 
 
 - Modify variables in `config.py` based on your dataset
 - Run python `main.py --yolo2voc` to convert YOLO to VOC
