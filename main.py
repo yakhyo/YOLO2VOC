@@ -57,29 +57,29 @@ def voc2yolo(xml_file):
             out_file.write(str(cls_id) + " " + " ".join([str(f'{i:.6f}') for i in b]) + '\n')
 
 
-def voc2yolo_a(xml_file):
-    in_file = open(f'{config.xml_dir}/{xml_file}')
-    tree = ElementTree.parse(in_file)
-
-    class_exists = False
-    for obj in tree.findall('object'):
-        name = obj.find('name').text
-        if name in config.names:
-            class_exists = True
-
-    if class_exists:
-        out_file = open(f'{config.label_dir}/{xml_file[:-4]}.txt', 'w')
-        for obj in tree.findall('object'):
-            xml_box = obj.find('bndbox')
-            x_min = round(float(xml_box.find('xmin').text))
-            y_min = round(float(xml_box.find('ymin').text))
-            x_max = round(float(xml_box.find('xmax').text))
-            y_max = round(float(xml_box.find('ymax').text))
-
-            b = [x_min, y_min, x_max, y_max]
-            cls_id = config.names.index(obj.find('name').text)
-            out_file.write(str(cls_id) + " " + " ".join([str(f'{i}') for i in b]) + '\n')
-        out_file.close()
+# def voc2yolo_a(xml_file):
+#     in_file = open(f'{config.xml_dir}/{xml_file}')
+#     tree = ElementTree.parse(in_file)
+#
+#     class_exists = False
+#     for obj in tree.findall('object'):
+#         name = obj.find('name').text
+#         if name in config.names:
+#             class_exists = True
+#
+#     if class_exists:
+#         out_file = open(f'{config.label_dir}/{xml_file[:-4]}.txt', 'w')
+#         for obj in tree.findall('object'):
+#             xml_box = obj.find('bndbox')
+#             x_min = round(float(xml_box.find('xmin').text))
+#             y_min = round(float(xml_box.find('ymin').text))
+#             x_max = round(float(xml_box.find('xmax').text))
+#             y_max = round(float(xml_box.find('ymax').text))
+#
+#             b = [x_min, y_min, x_max, y_max]
+#             cls_id = config.names.index(obj.find('name').text)
+#             out_file.write(str(cls_id) + " " + " ".join([str(f'{i}') for i in b]) + '\n')
+#         out_file.close()
 
 
 if __name__ == '__main__':
@@ -87,7 +87,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--yolo2voc', action='store_true', help='YOLO to VOC')
     parser.add_argument('--voc2yolo', action='store_true', help='VOC to YOLO')
-    parser.add_argument('--voc2yolo_a', action='store_true', help='VOC to YOLO absolute')
+    # parser.add_argument('--voc2yolo_a', action='store_true', help='VOC to YOLO absolute')
     args = parser.parse_args()
 
     if args.yolo2voc:
@@ -103,8 +103,8 @@ if __name__ == '__main__':
             pool.map(voc2yolo, xml_files)
         pool.join()
 
-    if args.voc2yolo_a:
-        xml_files = [name for name in os.listdir(config.xml_dir) if name.endswith('.xml')]
-        with multiprocessing.Pool(os.cpu_count()) as pool:
-            pool.map(voc2yolo_a, xml_files)
-        pool.close()
+    # if args.voc2yolo_a:
+    #     xml_files = [name for name in os.listdir(config.xml_dir) if name.endswith('.xml')]
+    #     with multiprocessing.Pool(os.cpu_count()) as pool:
+    #         pool.map(voc2yolo_a, xml_files)
+    #     pool.close()
