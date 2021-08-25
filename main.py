@@ -43,8 +43,8 @@ def voc2yolo(xml_file):
             x_max = float(xml_box.find('xmax').text)
             y_max = float(xml_box.find('ymax').text)
 
-            box_x_center = (x_min + x_max) / 2.0
-            box_y_center = (y_min + y_max) / 2.0
+            box_x_center = (x_min + x_max) / 2.0 - 1 # according to darknet annotation
+            box_y_center = (y_min + y_max) / 2.0 - 1 # according to darknet annotation
             box_w = x_max - x_min
             box_h = y_max - y_min
             box_x = box_x_center * 1. / width
