@@ -30,5 +30,5 @@ Let's say for `img1.jpg` you will be created `img1.txt` containing:
 1 152 356 658 754
 ```
 ### Reference
-1. [AlexeyAB](https://github.com/AlexeyAB/Yolo_mark/issues/60)
-2. [Jahongir7174](https://github.com/jahongir7174/YOLO2VOC)
+1. https://github.com/AlexeyAB/Yolo_mark/issues/60
+2. https://github.com/jahongir7174/YOLO2VOC
