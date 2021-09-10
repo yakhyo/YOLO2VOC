@@ -97,6 +97,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     if args.yolo2voc:
+        print('YOLO to VOC')
         txt_files = [name for name in os.listdir(config.label_dir) if name.endswith('.txt')]
 
         with multiprocessing.Pool(os.cpu_count()) as pool:
@@ -104,6 +105,7 @@ if __name__ == '__main__':
         pool.join()
 
     if args.voc2yolo:
+        print('VOC to YOLO')
         xml_files = [name for name in os.listdir(config.xml_dir) if name.endswith('.xml')]
         with multiprocessing.Pool(os.cpu_count()) as pool:
             pool.map(voc2yolo, xml_files)
